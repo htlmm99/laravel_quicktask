@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Task;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,4 +15,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::post('/task', function(){
+
+});
+
+Route::delete('task/{task}', function(Task $task){
+
 });
