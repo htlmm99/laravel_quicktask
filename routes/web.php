@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Task;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,15 +11,4 @@ use App\Task;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::post('/task', function(){
-
-});
-
-Route::delete('task/{task}', function(Task $task){
-
-});
+Route::resource('tasks', 'TaskController');
