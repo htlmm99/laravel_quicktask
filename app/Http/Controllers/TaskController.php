@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\TaskRequest;
+use App\Models\Task;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class TaskController extends Controller
 {
@@ -13,7 +16,9 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        $tasks = Task::orderBy('created_at', 'asc')->get();
+
+        return view('tasks.index', compact('tasks'));
     }
 
     /**
@@ -23,7 +28,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        return view('tasks');
+        return view('tasks.index');
     }
 
     /**
@@ -32,9 +37,11 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TaskRequest $request)
     {
+        Task::create($request->all());
 
+        return redirect()->route('tasks.index')->with('message', trans('message.create_success'));
     }
 
     /**
@@ -56,7 +63,15 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        //
+        try {
+            $task = Task::findOrFail($id);
+        }
+        catch (ModelNotFoundException $e) {
+
+            return redirect()->route('tasks.index')->with('error', trans('message.fail'));
+        }
+
+        return view('tasks.edit', compact('task'));
     }
 
     /**
@@ -68,7 +83,16 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $task = Task::findOrFail($id);
+        }
+        catch (ModelNotFoundException $e) {
+
+            return redirect()->route('tasks.index')->with('error', trans('message.fail'));
+        }
+        $task->update($request->all());
+
+        return redirect()->route('tasks.index')->with('message', trans('message.edit_success'));
     }
 
     /**
@@ -79,6 +103,15 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $task = Task::findOrFail($id);
+        }
+        catch (ModelNotFoundException $e) {
+
+            return redirect()->route('tasks.index')->with('error', trans('message.fail'));
+        }
+        $task->delete();
+
+        return redirect()->route('tasks.index')->with('message', trans('message.delete_success'));
     }
 }

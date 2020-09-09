@@ -1,0 +1,25 @@
+{
+  "name": "laravel_quicktask",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Manh <hungyen1101@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/htlmm99/laravel_quicktask",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^4.5.2",
+    "Font-Awesome": "https://github.com/FortAwesome/Font-Awesome.git#^5.14.0",
+    "jquery": "^3.5.1",
+    "css": "https://fonts.googleapis.com/css?family=Lato:100,300,400,700",
+    "lato-font": "https://github.com/betsol/lato-font"
+  }
+}
