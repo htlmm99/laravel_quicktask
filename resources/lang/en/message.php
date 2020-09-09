@@ -17,4 +17,13 @@ return [
     'edit_success' => 'Updated successfully!',
     'delete_success' => 'Deleted successfully!',
     'fail' => 'Not found!',
+    'failExist' => 'Model is exits',
+    'user' => 'User',
+    'user_list' => 'User List',
+    'edit_user' => 'Edit User',
+    'add_user' => 'Add User',
+    'current_users' => 'Current Users',
+    'show' => 'Show',
+    'username' => 'Username',
+    'useremail' => 'Email',
 ];
