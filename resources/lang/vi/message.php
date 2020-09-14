@@ -17,4 +17,13 @@ return [
     'edit_success' => 'Cập nhật thành công!',
     'delete_success' => 'Xóa thành công!',
     'fail' => 'Lỗi! Không tìm thấy',
+    'failExist' => 'Lỗi! Đã tồn tại',
+    'user' => 'Thành viên',
+    'user_list' => 'Danh sách thành viên',
+    'edit_user' => 'Chỉnh sửa thành viên',
+    'add_user' => 'Thêm thành viên',
+    'current_users' => 'Thành viên đang có',
+    'show' => 'Hiển thị',
+    'username' => 'Tên thành viên',
+    'useremail' => 'Email thành viên',
 ];

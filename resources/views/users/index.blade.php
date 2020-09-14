@@ -2,25 +2,29 @@
 
 @section('content')
 
-<div class="container">
-    <div class="col-sm-offset-2 col-sm-8">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                {{ trans('message.add_task') }}
-            </div>
-            <div class="panel-body">
-                @include('common.errors')
-                <form action="{{ route('tasks.store') }}" method="POST" class="form-horizontal">
+      <div class="container">
+        <div class="col-sm-offset-2 col-sm-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {{ trans('message.add_user') }}
+                </div>
+
+                <div class="panel-body">
+                    @include('common.errors')
+                <form action="{{ route('users.store') }}" method="POST" class="form-horizontal">
                     @csrf
-                    <!-- Task Name -->
                     <div class="form-group">
-                        <label for="task" class="col-sm-3 control-label">{{ trans('message.task') }}</label>
+                        <label for="task" class="col-sm-3 control-label">{{ trans('message.username') }}</label>
                         <div class="col-sm-6">
-                            <input type="text" name="name" id="task-name" class="form-control">
+                            <input type="text" name="name" id="user-name" class="form-control" placeholder="Name">
                         </div>
                     </div>
-
-                    <!-- Add Task Button -->
+                    <div class="form-group">
+                        <label for="task" class="col-sm-3 control-label">{{ trans('message.useremail') }}</label>
+                        <div class="col-sm-6">
+                            <input type="text" name="email" id="user-email" class="form-control" placeholder="Email">
+                        </div>
+                    </div>
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-6">
                             <button type="submit" class="btn btn-default">
@@ -32,11 +36,11 @@
             </div>
         </div>
         <!-- Current Tasks -->
-        @isset($tasks)
-            @if (count($tasks) > 0)
+        @isset($users)
+            @if (count($users) > 0)
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        {{ trans('message.current_tasks') }}
+                        {{ trans('message.current_users') }}
                     </div>
                     <div class="panel-body">
                         @if (session('message'))
@@ -47,23 +51,17 @@
                         @endif
                         <table class="table table-striped task-table">
                             <thead>
-                                <th>{{ trans('message.task') }}</th>
+                                <th>{{ trans('message.username') }}</th>
+                                <th>{{ trans('message.useremail') }}</th>
                                 <th>&nbsp;</th>
                             </thead>
                             <tbody>
-                                @foreach ($tasks as $task)
+                                @foreach ($users as $user)
                                     <tr>
-                                        <td class="table-text"><div>{{ $task->name }}</div></td>
+                                        <td class="table-text"><div>{{ $user->name }}</div></td>
+                                        <td class="table-text"><div>{{ $user->email }}</div></td>
                                         <td>
-                                            <form action="{{ route('tasks.show', $task->id) }}">
-                                                @csrf
-                                                <button type="submit" class="btn btn-danger">
-                                                    <i class="fa fa-btn fa-trash"></i>{{ trans('message.show') }}
-                                                </button>
-                                            </form>
-                                        </td>
-                                        <td>
-                                            <form action="{{ route('tasks.edit', $task->id) }}">
+                                            <form action="{{ route('users.edit', $user->id) }}">
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger">
                                                     <i class="fa fa-btn fa-trash"></i>{{ trans('message.edit') }}
@@ -71,7 +69,7 @@
                                             </form>
                                         </td>
                                         <td>
-                                            <form action="{{ route('tasks.destroy', $task->id) }}" method="POST">
+                                            <form action="{{ route('users.destroy', $user->id) }}" method="POST">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit" class="btn btn-danger">

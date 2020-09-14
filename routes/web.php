@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'locale'], function() {
     Route::get('lang/{lang}', 'LangController@changeLang')->name('lang');
+    Route::post('add-user/{id}', 'TaskController@addUser')->name('task-add-user');
+    Route::delete('delete-user/{task_id}/{user_id}', 'TaskController@deleteUser')->name('task-delete-user');
     Route::resource('tasks', 'TaskController');
+    Route::resource('users', 'UserController');
 });
-
-

@@ -11,7 +11,8 @@
         <div class="container">
             <nav class="navbar navbar-default">
                 <div class="panel-heading">
-                    {{ trans('message.task_list') }}
+                    <a class="btn btn-success active" href="{{ route('tasks.index') }}">{{ trans('message.task_list') }}</a>
+                    <a class="btn btn-danger active" href="{{ route('users.index') }}">{{ trans('message.user_list') }}</a>
                 </div>
                 <div class="nav navbar-right" id="lang">
                     <a class="btn btn-success active" href="{{ route('lang', 'vi') }}">{{ trans('message.vietnamese') }}</a>
